@@ -1,1 +1,2 @@
 # wundergroundAjax
+simple ajax call 
