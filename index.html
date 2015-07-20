@@ -64,17 +64,25 @@
 							var latitude = json.current_observation.observation_location.latitude ;
 							var longitude = json.current_observation.observation_location.longitude;
 							$('#results').html('Location: ' + json.current_observation.observation_location.full + '<br />Lat: ' + latitude +  '<br />Lon: ' + longitude+  '<br />Temp(F): ' + json.current_observation.temp_f);
-							
+							//google map object call
+							var mapCanvas = document.getElementById('map-canvas');
+							var myLatLong = new google.maps.LatLng(latitude, longitude);
+							var mapOptions = {
+									center: myLatLong,
+									zoom: 8,
+									mapTypeId: google.maps.MapTypeId.ROADMAP,
+									}
+							var map = new google.maps.Map(mapCanvas, mapOptions);
+							var marker = new google.maps.Marker({
+									position: myLatLong,
+									map: map,
+									title: 'Hello World!'
+							});
+							//google map end
 						}
 					});
 					//alert("Hello world");
-					var mapCanvas = document.getElementById('map-canvas');
-					var mapOptions = {
-							center: new google.maps.LatLng(44.5403, -78.5463),
-							zoom: 8,
-							mapTypeId: google.maps.MapTypeId.ROADMAP
-						}
-					var map = new google.maps.Map(mapCanvas, mapOptions);
+					
 				}
 				$.fn.renderMap();
 			});
