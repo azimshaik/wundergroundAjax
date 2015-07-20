@@ -48,25 +48,6 @@
         $(document).ready(function () {
             //after button is clicked we download the data
 			  
-            $('.button').click(function () {
-                //start ajax request
-                $.ajax({
-                    url: "http://api.wunderground.com/api/32976a8a62f1d2ae/conditions/q/OH/ABERDEEN/.json",
-                    //force to handle it as text
-                    dataType: "text",
-                    success: function (data) {
-                        //data downloaded so we call parseJSON function 
-                        //and pass downloaded data
-                        var json = $.parseJSON(data);
-                        //now json variable contains data in json format
-                        //let's display a few items
-						var latitude = json.current_observation.observation_location.latitude ;
-						var longitude = json.current_observation.observation_location.longitude;
-                        $('#results').html('Location: ' + json.current_observation.observation_location.full + '<br />Lat: ' + latitude +  '<br />Lon: ' + longitude+  '<br />Temp(F): ' + json.current_observation.temp_f);
-						
-                    }
-                });
-            });
 			$('.buttonMap').click(function (){
 			
 				$.fn.renderMap = function(){
@@ -83,7 +64,7 @@
 							var latitude = json.current_observation.observation_location.latitude ;
 							var longitude = json.current_observation.observation_location.longitude;
 							$('#results').html('Location: ' + json.current_observation.observation_location.full + '<br />Lat: ' + latitude +  '<br />Lon: ' + longitude+  '<br />Temp(F): ' + json.current_observation.temp_f);
-						
+							
 						}
 					});
 					//alert("Hello world");
