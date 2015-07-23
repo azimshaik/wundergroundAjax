@@ -51,8 +51,10 @@
 			$('.buttonMap').click(function (){
 			
 				$.fn.renderMap = function(){
+					var cities = ["KENT","AKRON","SOLON","CLEVELAND"];
+					for (var i = 0 ; i<cities.length; i++){
 					 $.ajax({
-						url: "http://api.wunderground.com/api/32976a8a62f1d2ae/conditions/q/OH/ABERDEEN/.json",
+						url: "http://api.wunderground.com/api/32976a8a62f1d2ae/conditions/q/OH/"+cities[i]+"/.json",
 						//force to handle it as text
 						dataType: "text",
 						success: function (data) {
@@ -70,7 +72,7 @@
 							var mapOptions = {
 									center: myLatLong,
 									zoom: 8,
-									mapTypeId: google.maps.MapTypeId.ROADMAP,
+									mapTypeId: google.maps.MapTypeId.TERRAIN,
 									}
 							var map = new google.maps.Map(mapCanvas, mapOptions);
 							var marker = new google.maps.Marker({
@@ -78,11 +80,12 @@
 									map: map,
 									title: 'Hello World!'
 							});
+							marker += marker;
 							//google map end
-						}
+						}//end of for loop
 					});
 					//alert("Hello world");
-					
+					}
 				}
 				$.fn.renderMap();
 			});
