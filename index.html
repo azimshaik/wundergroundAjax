@@ -47,12 +47,10 @@
         //When DOM loaded we attach click event to button
         $(document).ready(function () {
             //after button is clicked we download the data
-			  
-			$('.buttonMap').click(function (){
-			
-				$.fn.renderMap = function(){
-					var cities = ["KENT","AKRON","SOLON","CLEVELAND"];
-					for (var i = 0 ; i<cities.length; i++){
+			  $('.buttonMap').click(function (){
+		        $.fn.renderMap = function(){
+					var cities = ["KENT","AKRON","SOLON"];
+					for (var i = 0 ; i<=cities.length; i++){
 					 $.ajax({
 						url: "http://api.wunderground.com/api/32976a8a62f1d2ae/conditions/q/OH/"+cities[i]+"/.json",
 						//force to handle it as text
@@ -65,6 +63,7 @@
 							//let's display a few items
 							var latitude = json.current_observation.observation_location.latitude ;
 							var longitude = json.current_observation.observation_location.longitude;
+							
 							$('#results').html('Location: ' + json.current_observation.observation_location.full + '<br />Lat: ' + latitude +  '<br />Lon: ' + longitude+  '<br />Temp(F): ' + json.current_observation.temp_f);
 							//google map object call
 							var mapCanvas = document.getElementById('map-canvas');
@@ -80,7 +79,6 @@
 									map: map,
 									title: 'Hello World!'
 							});
-							marker += marker;
 							//google map end
 						}//end of for loop
 					});
